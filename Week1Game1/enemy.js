@@ -23,7 +23,7 @@ class Enemy {
         {
             x = random(width);
             y = height+20;
-            velocaty = createVector(0,-1);
+            velocity = createVector(0,-1);
         }
         if(side==2)//left
         {
