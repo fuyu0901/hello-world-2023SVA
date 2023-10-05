@@ -26,14 +26,6 @@ class Bullet {
     
     hits(enemy) {
         let d = dist(this.x, this.y, enemy.x, enemy.y);
-        if (d < 20 && !enemy.isOffscreen()){
-            score++;
-            if(score>30){
-                undateFrequency = 30;
-            }else if(score>10){
-                undateFrequency = 60;
-            }
-        }
         return d < 20;
     } 
   }

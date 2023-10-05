@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(x,y,type,velocity,speed,damage,enable_shoot,isHit) {
+    constructor(x,y,type,velocity,speed,damage,enable_shoot,hp,isHit) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -7,6 +7,7 @@ class Enemy {
         this.speed = speed;
         this.damage = damage;
         this.enable_shoot = enable_shoot;
+        this.hp = hp;
         this.isHit = false;
     }
     static createRandomFromSide() {
@@ -39,13 +40,13 @@ class Enemy {
         }
         if(random(5)>=3){
             console.log("a");
-            return new Enemy(x, y, "a", velocity, 2, 1,false,false);
+            return new Enemy(x, y, "a", velocity, 2, 1,false,1,false);
         }else if(random(5)>=2){
             console.log("b");
-            return new Enemy(x, y, "b", velocity, 1, 1,false,false);
+            return new Enemy(x, y, "b", velocity, 1, 1,false,1,false);
         }else if(random(5)>=2){
             console.log("c");
-            return new Enemy(x, y, "c", velocity, 1, 2,false,false);
+            return new Enemy(x, y, "c", velocity, 0.5, 2,false,4,false);
         }
     }
     
@@ -55,10 +56,19 @@ class Enemy {
     }
   
     show() {
-        if (!this.isHit) {
-            fill(255, 0, 0);
+        if(this.type =="a")
+        {
+            fill(255, 255, 0);
             ellipse(this.x, this.y, 30, 30);
+        }else if(this.type =="b"){
+            fill(255, 100, 0);
+            ellipse(this.x, this.y, 40, 40);
+        }else{
+            fill(255, 0, 0);
+            ellipse(this.x, this.y, 60, 60);
         }
+
+        
     }
   
     isOffscreen() {
@@ -66,7 +76,8 @@ class Enemy {
     }
   
     hits(player) {
-      let d = dist(this.x, this.y, player.x + 25, player.y + 25);
+        
+      let d = dist(this.x, this.y, player.x + playerSize/2, player.y + playerSize/2);
       return d < 30;
     }
   }
