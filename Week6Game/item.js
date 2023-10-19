@@ -46,13 +46,13 @@ class Item {
   
     hits(player) {
       let d = dist(this.x, this.y, player.x, player.y);
-      return d < 25;
+      return d < 35;
     }
   
     applyEffect() {
       //moveSpeed
       if(this.type == 0){
-        playerSpeed += 3;
+        playerSpeed += 2;
       }
       //add damage
       if(this.type == 1){
@@ -70,7 +70,7 @@ class Item {
     RemoveEffect(){
       //moveSpeed
       if(this.type == 0){
-        playerSpeed -=3;
+        playerSpeed -=2;
       }
       //add damage
       if(this.type == 1){

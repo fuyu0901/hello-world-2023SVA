@@ -25,7 +25,17 @@ class Bullet {
     }
     
     hits(enemy) {
+        let type = enemy.type;
         let d = dist(this.x, this.y, enemy.x, enemy.y);
-        return d < 20;
+        if(type =="a"){
+          return d < 20;
+        }
+        if(type =="b"){
+          return d < 30;
+        }
+        if(type =="c"){
+          return d < 40;
+        }
+        
     } 
   }
