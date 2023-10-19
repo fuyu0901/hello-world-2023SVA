@@ -1,6 +1,6 @@
 let screenW = 800;
 let screenH = 800;
-let updateFrequency = 80;
+let undateFrequency = 80;
 let player;
 let playerSize = 50;
 let bullets = [];
@@ -48,7 +48,7 @@ function updateBullets() {
   
 // update the enemies
 function updateEnemies() {
-    if (frameCount % updateFrequency === 0) {
+    if (frameCount % undateFrequency === 0) {
         let newEnemy = Enemy.createRandomFromSide();
         if (newEnemy) {
           enemies.push(newEnemy);
@@ -56,19 +56,18 @@ function updateEnemies() {
     }
     if(enemies !=[] ){
         for (let i = enemies.length - 1; i >= 0; i--) {
-
+            enemies[i].update();
+            enemies[i].show();
             if (enemies[i].isOffscreen()) {
               enemies.splice(i, 1);
             } else if (enemies[i].hits(player)) {
-              enemies.splice(i, 1);
               playerHealth -= 1;
               if(playerHealth<0){
                 isDead();
                 noLoop();
               }
+              enemies.splice(i, 1);
             }
-            enemies[i].update();
-            enemies[i].show();
           }
     }
 
@@ -105,26 +104,10 @@ function handleShooting() {
 function checkBulletHit(){
     for (let i = bullets.length - 1; i >= 0; i--) {
         for (let j = enemies.length - 1; j >= 0; j--) {
-          if (bullets[i].hits(enemies[j]) && !enemies[j].isOffscreen()) {
+          if (bullets[i].hits(enemies[j])) {
             bullets.splice(i, 1);
             enemies[j].isHit = true; // enemy is hit 
-            console.log("hit");
-            enemies[j].hp--;
-            if(enemies[j].hp == 0){
-              if(enemies[j].type =="c"){
-                score+=5;
-              }else{
-                score++;
-              }
-              if(score>30){
-                updateFrequency = 30;
-              }else if(score>10){
-                updateFrequency = 60;
-              }
-              enemies.splice(j, 1);
-              break;
-            }
-
+            break;
           }
         }
     }
