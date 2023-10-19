@@ -24,8 +24,24 @@ class Item {
     }
   
     show() {
-      fill(0, 255, 255);
-      rect(this.x, this.y, 40, 40);
+      if(this.type == 0){
+        fill(255, 0, 255);
+        rect(this.x, this.y, 40, 40);
+      }
+      if(this.type == 1){
+        fill(40, 255, 255);
+        rect(this.x, this.y, 40, 40);
+      }
+      if(this.type == 2){
+        fill(255, 255, 0);
+        rect(this.x, this.y, 40, 40);
+      }
+      if(this.type == 3){
+        fill(255, 0, 0);
+        rect(this.x, this.y, 40, 40);
+      }
+      
+      
     }
   
     hits(player) {

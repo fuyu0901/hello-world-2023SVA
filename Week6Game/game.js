@@ -8,7 +8,7 @@ let bullets = [];
 let enemies = [];
 let items = [];
 let itemsGot = [];
-
+let button;
 let itemGenerate = 0;
 let playerHealth = 4;
 let score = 0;
@@ -23,6 +23,9 @@ function setup() {
   rectMode(CENTER);
   imageMode(CENTER);
   player = new Player();
+  button = createButton('Restart');
+  button.position(width/2,35);
+  button.mousePressed(restart);
 }
 
 function draw() {
@@ -175,6 +178,12 @@ function AddItem_ChangeDif(){
     items.push(newItem);
     itemGenerate =0;
   }
+
+}
+
+//
+function restart(){
+  location.reload();
 
 }
 
