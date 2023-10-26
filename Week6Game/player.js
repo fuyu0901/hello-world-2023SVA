@@ -7,6 +7,7 @@ class Player {
 
     update() {
         //use keyboard as an input
+        
         if (keyIsDown(UP_ARROW)||keyIsDown(87)) {
             player.y -= playerSpeed;
           }
@@ -19,6 +20,8 @@ class Player {
           if (keyIsDown(RIGHT_ARROW)||keyIsDown(68)) {
             player.x += playerSpeed;
           }
+          this.x = constrain(this.x,playerSize/2,width-playerSize/2);
+          this.y = constrain(this.y,playerSize/2,height-playerSize/2);
     }
   
     show() {
